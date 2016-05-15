@@ -135,11 +135,11 @@ struct filterbank {
     
     for(int ch = 0; ch < channels; ch++) {
       
-      fbank[ch * bands].update(lowcut, 10, samplerate, state_variable_filter::HP);
+      fbank[ch * bands].update(lowcut, 1.5, samplerate, state_variable_filter::HP);
       for(int b = 1; b < bands-1; b++) {
-	fbank[(ch * bands) + b].update(lowcut + (b * ((hicut - lowcut) / bands)) , 10, samplerate, state_variable_filter::BP);
+	fbank[(ch * bands) + b].update(lowcut + (b * ((hicut - lowcut) / bands)) , 1.5, samplerate, state_variable_filter::BP);
       }
-      fbank[(ch * bands) + bands-1].update(hicut, 10, samplerate, state_variable_filter::LP);
+      fbank[(ch * bands) + bands-1].update(hicut, 1.5, samplerate, state_variable_filter::LP);
 
     }
 
